@@ -1,9 +1,4 @@
 
-## Setup the provider
-# provider "aws" {
-#     region = "us-east-1"
-# }
-
 variable "key_name" {
   default = "test-key"
 }
@@ -31,8 +26,7 @@ resource "aws_security_group" "group" {
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
-    
-    # HTTP access from anywhere
+    ## Docker service access on port 8000
     ingress {
         from_port = 8000
         to_port = 8000
@@ -67,16 +61,11 @@ resource "aws_instance" "flask" {
       host = self.public_ip
       type = "ssh"
       user = "ubuntu"
-      
       private_key = tls_private_key.example.private_key_pem 
     }
     provisioner "file" {
           source = "./scripts/"
           destination = "/tmp/"
-
-          # connection {
-          #   type
-          # }
       }	
     provisioner "remote-exec" {
     inline = [
