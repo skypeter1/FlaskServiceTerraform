@@ -12,4 +12,4 @@ sudo apt-get install build-essential -y
 cd /home/ubuntu
 git clone  https://github.com/skypeter1/FlaskServiceTerraform.git
 cd FlaskServiceTerraform
-make docker-run
+sudo make docker-run
