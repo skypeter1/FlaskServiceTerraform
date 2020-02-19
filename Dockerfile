@@ -15,4 +15,4 @@ WORKDIR /var/www/flask
 
 ## Run the service
 EXPOSE 8000
-RUN python3 hello.py
+CMD ["python3", "./hello.py"]
